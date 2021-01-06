@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Shop</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+  <script src="car_filter.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <form action="#">
+      <label for="make">Make</label>
+      <select id="make"></select>
+      <label for="model">Model</label>
+      <select id="model"></select>
+      <label for="year">Year</label>
+      <select id="year"></select>
+      <label for="price">Price</label>
+      <select id="price"></select>
+      <button type="submit">Filter</button>
+    </form>
+  </header>
+  <main></main>
+  <script type="text/x-handlebars" id="cars">
+    <ul class="cars">
+      {{#each cars}}
+        {{>car}}
+      {{/each}}
+    </ul>
+  </script>
+  <script id="car" type="text/x-handlebars" class="partial">
+    <li class="car" data-year="{{year}}" data-make="{{make}}" data-model="{{model}}">
+      <figure>
+        <img src="{{image}}" alt="{{year}} {{make}} {{model}}">
+        <figcaption>
+          <h4>{{year}} {{make}} {{model}}</h4>
+        </figcaption>
+        <h3>${{price}}</h3>
+      </figure>
+    </li>
+  </script>
+  <script id="options" type="text/x-handlebars">
+    <option value="">Any</option>
+    {{#each options}}
+      <option value="{{name}}" for="{{label}}">{{name}}</option>
+    {{/each}}
+  </script>
+</body>
+</html>
